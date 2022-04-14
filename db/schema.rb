@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 2022_04_12_091307) do
   enable_extension "plpgsql"
 
   create_table "cafes", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "address"
     t.string "name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_caves_on_user_id"
+    t.index ["user_id"], name: "index_cafes_on_user_id"
   end
 
   create_table "carts", force: :cascade do |t|
