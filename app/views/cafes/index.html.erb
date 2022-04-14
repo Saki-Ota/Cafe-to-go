@@ -1,5 +1,8 @@
 <% Cafe.all.each do |cafe| %>
-<%= cafe.name %> <br>
+
+<%= link_to cafe.name, cafe_path(cafe) %>
+<br>
 Address: <%= cafe.address %> <br>
 Description: <%= cafe.description %>
+<br><br>
 <% end %>

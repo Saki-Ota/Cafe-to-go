@@ -13,7 +13,9 @@ class CafesController < ApplicationController
   end
 
   def create
+    @user_id = current_user.id
     @cafe = Cafe.new(cafe_params)
+    @cafe.user_id = @user_id
     @cafe.save
     redirect_to cafe_path(@cafe)
   end
