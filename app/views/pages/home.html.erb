@@ -1,2 +1,8 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Find the Cafe you are in</h1>
+<ul>
+<% @cafes.each do |cafe| %>
+<li><%= cafe.name %></li>
+<li><%= cafe.address %></li>
+<li><%= cafe.descripton %></li>
+<% end %>
+</ul>
