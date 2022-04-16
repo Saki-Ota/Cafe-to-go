@@ -2,8 +2,6 @@
   <div class="row justify-content-center">
     <div class="col-12 col-lg-6">
       <% @products.each do |product| %>
-
-     <div class="card-product">
         <div class="card-product">
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
           <div class="card-product-infos">
@@ -13,7 +11,7 @@
             <a href="<%= carts_path %>" class="btn btn-primary">Add to cart</a>
           </div>
         </div><br>
-        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
