@@ -1,0 +1,3 @@
+<% @products.each do |product| %>
+<%= link_to product.name,  cafe_product_path(product.cafe_id, product) %>
+<% end %>
