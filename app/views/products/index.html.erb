@@ -5,13 +5,15 @@
     <div class="col-12 col-lg-6">
       <% @products.each do |product| %>
 
-      <div class = "d-flex justify-content-between">
-        <%= link_to product.name,  cafe_product_path(product.cafe_id, product) %>
-        <p>$ <%= product.price %></p>
-        </div>
-        <%= product.description %><br>
-        <%= link_to "add to cart", carts_path %><br>
-        <br>
+     <div class="card-product">
+          <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
+          <div class="card-product-infos">
+            <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
+            <p>$<%= product.price %></p>
+            <p><%= product.description %></p>
+            <a href="<%= carts_path %>" class="btn btn-primary">Add to cart</a>
+          </div>
+        </div><br>
         <% end %>
     </div>
   </div>
