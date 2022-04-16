@@ -1,3 +1,6 @@
 <p><%= @cafe.name %> <br>
 Address: <%= @cafe.address %> <br>
 Description: <%= @cafe.description %></p>
+
+<%= link_to "Products", cafe_products_path(@cafe) %>
+<%= link_to "Edit Cafe", edit_cafe_path(@cafe) %>
