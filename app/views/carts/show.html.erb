@@ -1,0 +1,8 @@
+<h1>Your shopping cart</h1>
+
+<% @cart.items.each do |item| %>
+  <%= item.product.name %>
+  <%= link_to "delete", cart_item_path(item), method: :delete, data: {confirm: "Are you sure?"} %>
+  <p>$<%= item.product.price %></p>
+  <br>
+<% end %>

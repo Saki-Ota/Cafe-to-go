@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :items, only: %i[destroy]
   end
 
+
+
   resources :cafes, only: %i[index show new create destroy update] do
     resources :products, only: %i[index show new create] do
       resources :carts, only: %i[new create]
