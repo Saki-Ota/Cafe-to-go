@@ -1,15 +1,41 @@
-<p><%= @cafe.name %> <br>
-Address: <%= @cafe.address %> <br>
-Description: <%= @cafe.description %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 justify-centre">
+      <h1><%= @cafe.name %> </h1>
+      <p>Address: <%= @cafe.address %> <br>
+      Description: <%= @cafe.description %></p>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 justify-content-between">
+      <p>Menu items</p>
+      <% Product.where(cafe_id: 1).each do |product| %>
+      <p><%= product.name %> </p> #event listener that makes a new item and adds to cart.
+      <% end %>
+    </div>
+    <div class="col-sm-6 justify-content-between">
+      <div class="card mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-transparent">Shopping cart</div>
+        <div class="card-body">
+        <h5 class="card-title">Item in cart</h5>
+        <p class="card-text">Delicious item with jam and honey</p>
+      </div>
+      <div class="card-footer bg-transparent">
+        <button type="submit" class="btn btn-primary">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container d-flex flex-column min-vh-100">
+<footer class="mt-auto">
+    <p>For Business owner:</p>
+    <%= link_to "Product creation", new_cafe_product_path(@cafe) %>
+    <%= link_to "Edit Products", cafe_products_path(@cafe) %>
+    <%= link_to "Edit Cafe", edit_cafe_path(@cafe) %>
 
-
-<p><br>
-For Business owner:
-<%= link_to "Edit Products", cafe_products_path(@cafe) %>
-<%= link_to "Edit Cafe", edit_cafe_path(@cafe) %> <br>
-
-For Customers: <br>
-<% Product.where(cafe_id: 1).each do |product| %>
-<%= product.name %> <br>
-<% end %>
-</p>
+  </div>
+</footer>
