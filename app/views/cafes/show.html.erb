@@ -2,22 +2,24 @@
   <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6 justify-centre">
-      <h1><%= @cafe.name %> </h1>
-      <p>Address: <%= @cafe.address %> <br>
-      Description: <%= @cafe.description %></p>
+      <h1 class="text-center"><%= @cafe.name %> </h1>
+      <p class="text-center"><%= @cafe.address %> <br>
+      <%= @cafe.description %></p>
     </div>
     <div class="col-sm-3"></div>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 justify-content-between">
-      <p>Menu items</p>
-      <% Product.where(cafe_id: 1).each do |product| %>
-      <p><%= product.name %> </p> #event listener that makes a new item and adds to cart.
+    <div class="col-sm-9 justify-content-between">
+      <h3>Menu items</h3>
+      <% Product.where(cafe_id: @cafe.id).each do |product| %>
+      <p><%= product.name %>  #event listener that makes a new item and adds to cart.<br>
+      <%= product.price %> </p>
+      <button type="submit" class="btn btn-primary">Add to cart</button>
       <% end %>
     </div>
-    <div class="col-sm-6 justify-content-between">
+    <div class="col-sm-3 justify-content-between">
       <div class="card mb-3" style="max-width: 18rem;">
         <div class="card-header bg-transparent">Shopping cart</div>
         <div class="card-body">
@@ -36,6 +38,5 @@
     <%= link_to "Product creation", new_cafe_product_path(@cafe) %>
     <%= link_to "Edit Products", cafe_products_path(@cafe) %>
     <%= link_to "Edit Cafe", edit_cafe_path(@cafe) %>
-
   </div>
 </footer>
