@@ -1,3 +1,15 @@
 <p><%= @cafe.name %> <br>
 Address: <%= @cafe.address %> <br>
 Description: <%= @cafe.description %></p>
+
+
+<p><br>
+For Business owner:
+<%= link_to "Edit Products", cafe_products_path(@cafe) %>
+<%= link_to "Edit Cafe", edit_cafe_path(@cafe) %> <br>
+
+For Customers: <br>
+<% Product.where(cafe_id: 1).each do |product| %>
+<%= product.name %> <br>
+<% end %>
+</p>

@@ -6,6 +6,7 @@ class CafesController < ApplicationController
 
   def show
     @cafe = Cafe.find(params[:id])
+    @products = Product.all
   end
 
   def new

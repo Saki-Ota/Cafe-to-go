@@ -1,8 +1,3 @@
-<h1>Find the Cafe you are in</h1>
-<ul>
-<% @cafes.each do |cafe| %>
-<li><%= cafe.name %></li>
-<li><%= cafe.address %></li>
-<li><%= cafe.description %></li>
-<% end %>
-</ul>
+<h1>Find Cafes</h1>
+
+<%= link_to "All Cafes", cafes_path %>
