@@ -1,0 +1,15 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <h1>Add new Product</h1>
+        <%= simple_form_for [ @cafe, @product ], url: cafe_products_path do |f| %>
+          <%= f.input :name %>
+          <%= f.input :category %>
+          <%= f.input :description %>
+          <%= f.input :price %>
+          <%= f.submit %>
+        <% end %>
+    </div>
+  </div>
+</div>
