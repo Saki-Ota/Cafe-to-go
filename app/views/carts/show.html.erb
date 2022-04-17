@@ -8,3 +8,6 @@
   <%= link_to "Remove 1?", your_cart_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %></h1>
   <br><br>
 <% end %>
+
+<br><br>
+<%= link_to '<button type="button" class="btn btn-primary">Checkout</button>'.html_safe, checkout_page_path %>
