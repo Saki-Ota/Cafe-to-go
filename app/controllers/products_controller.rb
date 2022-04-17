@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @cafe = Cafe.find(params[:cafe_id])
-    @products = Product.where(cafe_id: @cafe.id) # Need to Change to only include products from this cafe
+    @products = Product.all # Need to Change to only include products from this cafe
   end
 
   def show
