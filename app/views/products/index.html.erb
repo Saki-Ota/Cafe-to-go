@@ -9,7 +9,7 @@
             <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
             <p>$<%= product.price %></p>
             <p><%= product.description %></p>
-            <a href="<%= carts_path %>" class="btn btn-primary">Add to cart</a>
+            <a href="<%= cafe_product_path(product.cafe_id, product) %>" class="btn btn-primary">See details</a>
           </div>
         </div><br>
       <% end %>
