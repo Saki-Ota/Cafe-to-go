@@ -14,9 +14,15 @@
     <div class="col-sm-9 justify-content-between">
       <h3>Menu items</h3>
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
-      <p><%= product.name %>  #event listener that makes a new item and adds to cart.<br>
-      <%= product.price %> </p>
-      <button type="submit" class="btn btn-primary">Add to cart</button>
+      <div class="card-product" style="width: 36rem;">
+          <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
+          <div class="card-product-infos">
+            <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
+            <p>$<%= product.price %></p>
+            <p><%= product.description %></p>
+            <a href="<%= carts_path %>" class="btn btn-primary">Add to cart</a>
+          </div>
+        </div><br>
       <% end %>
     </div>
     <div class="col-sm-3 justify-content-between">
