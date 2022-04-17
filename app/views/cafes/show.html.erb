@@ -20,7 +20,8 @@
             <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
             <p>$<%= product.price %></p>
             <p><%= product.description %></p>
-            <a href="<%= carts_path %>" class="btn btn-primary">Add to cart</a>
+            <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn btn-primary", method: :post %>
+            <%# <a href="#" class="btn btn-primary">Add to cart</a> %>
           </div>
         </div><br>
       <% end %>
@@ -29,11 +30,21 @@
       <div class="card mb-3" style="max-width: 18rem;">
         <div class="card-header bg-transparent">Shopping cart</div>
         <div class="card-body">
-        <h5 class="card-title">Item in cart</h5>
-        <p class="card-text">Delicious item with jam and honey</p>
+        <h5 class="card-title">Items in cart</h5>
+
+          <% unique = @cart.items.uniq { |p| p.product_id } %>
+
+          <% unique.each do |item| %>
+            Item: <%= Product.find(item.product_id).name %><br>
+            Amount: <%= @cart.items.where(product_id: item.product_id).length %>
+            <%= link_to "Remove 1?", your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %></h1>
+            <br><br>
+          <% end %>
+
       </div>
       <div class="card-footer bg-transparent">
-        <button type="submit" class="btn btn-primary">Checkout</button>
+        <%= link_to '<button type="button" class="btn btn-primary">Checkout</button>'.html_safe, checkout_page_path %>
+
       </div>
     </div>
   </div>

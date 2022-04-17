@@ -3,17 +3,21 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # resources :users
+  # Your cart show page
+  get 'your-cart', to: 'carts#show'
 
-  resources :carts, only: %i[show new create] do
-    resources :items, only: %i[destroy]
-  end
+  # to delete items in cart from your_cart page
+  delete 'your-cart', to: 'items#destroy'
+
+  # to delete items in cart from cafe menu page
+  delete 'your_cart_in_cafe', to: 'items#destroy_from_cafe'
+
+  # Add items to cart
+  post '/cafes/:id', to: 'items#create', as: 'add_to_cart'
+
+  get 'checkout_page', to: 'carts#checkout', as: 'checkout_page'
 
   resources :cafes do
-    resources :products, only: %i[index show new create edit update destroy] do
-      # resources :carts, only: %i[new create]
-      # resources :items, only: %i[new create]
-    end
+    resources :products, only: %i[index show new create edit update destroy]
   end
-  # resources :products, only: %i[update destroy]
 end
