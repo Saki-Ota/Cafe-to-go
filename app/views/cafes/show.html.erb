@@ -20,7 +20,8 @@
             <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
             <p>$<%= product.price %></p>
             <p><%= product.description %></p>
-            <a href="<%= carts_path %>" class="btn btn-primary">Add to cart</a>
+            <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn btn-primary", method: :post %>
+            <%# <a href="#" class="btn btn-primary">Add to cart</a> %>
           </div>
         </div><br>
       <% end %>

@@ -5,9 +5,12 @@ Rails.application.routes.draw do
 
   # resources :users
 
-  resources :carts, only: %i[show new create] do
-    resources :items, only: %i[destroy]
-  end
+  get 'your-cart', to: 'carts#show'
+  delete 'your-cart', to: 'items#destroy'
+  post '/cafes/:id', to: 'items#create', as: 'add_to_cart'
+  # resources :carts, only: %i[show new create] do
+  #   resources :items, only: %i[destroy]
+  # end
 
   resources :cafes do
     resources :products, only: %i[index show new create edit update destroy] do

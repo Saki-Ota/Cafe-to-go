@@ -1,0 +1,10 @@
+<h1>Your Cart</h1>
+
+<% unique = @cart.items.uniq { |p| p.product_id } %>
+
+<% unique.each do |item| %>
+  Item: <%= Product.find(item.product_id).name %><br>
+  Amount: <%= @cart.items.where(product_id: item.product_id).length %>
+  <%= link_to "Remove 1?", your_cart_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %></h1>
+  <br><br>
+<% end %>
