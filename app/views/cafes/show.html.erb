@@ -21,7 +21,6 @@
             <p>$<%= product.price %></p>
             <p><%= product.description %></p>
             <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn btn-primary", method: :post %>
-            <%# <a href="#" class="btn btn-primary">Add to cart</a> %>
           </div>
         </div><br>
       <% end %>
@@ -37,9 +36,16 @@
           <% unique.each do |item| %>
             Item: <%= Product.find(item.product_id).name %><br>
             Amount: <%= @cart.items.where(product_id: item.product_id).length %>
-            <%= link_to "Remove 1?", your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %></h1>
+            <%= link_to fa_icon("minus"), your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %>
+            <%= link_to fa_icon("plus"), add_to_cart_path(pid: item.product_id), method: :post  %>
             <br><br>
           <% end %>
+
+          <% total = 0 %>
+          <% @cart.items.each do |item| %>
+          <% total += Product.find(item.product_id).price %>
+          <% end %>
+          <p>Total Cost of Cart: $<%= total %></p>
 
       </div>
       <div class="card-footer bg-transparent">

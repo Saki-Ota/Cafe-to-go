@@ -12,8 +12,11 @@ Rails.application.routes.draw do
   # to delete items in cart from cafe menu page
   delete 'your_cart_in_cafe', to: 'items#destroy_from_cafe'
 
-  # Add items to cart
+  # Add items to cart (from cafe menu)
   post '/cafes/:id', to: 'items#create', as: 'add_to_cart'
+
+  # Increase number of items in cart from cart page
+  post 'your-cart', to: 'items#create_from_cart_page', as: 'add_to_cart_from_cart_page'
 
   get 'checkout_page', to: 'carts#checkout', as: 'checkout_page'
 
