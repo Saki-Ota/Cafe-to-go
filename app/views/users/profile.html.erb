@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 justify-centre">
+      <h1>Your Details</h1>
+      User Email: <br><%= current_user.email %> <br><br>
+      Edit your details:<br>
+      <%= simple_form_for [@user], url: profile_path do |f| %>
+          <%= f.input :first_name %> <br>
+          <%= f.input :last_name %> <br>
+          <%= f.input :phone_number %>
+          <%= f.submit %>
+        <% end %>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>

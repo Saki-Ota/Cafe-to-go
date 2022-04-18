@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all # Need to Change to only include products from this cafe
+    @cafe = Cafe.find(params[:cafe_id])
+    @products = Product.where(cafe_id: @cafe.id)
   end
 
   def show
@@ -26,7 +27,14 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.cafe_id = @cafe.id
     @product.save
-    redirect_to cafe_products_path(@product)
+    redirect_to cafe_products_path(@cafe)
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @cafe = Cafe.find(@product.cafe_id)
+    @product.destroy
+    redirect_to cafe_products_path(@cafe)
   end
 
   def product_params
