@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :items, through: :carts
   has_many :carts
-  validates :password, presence: true, length: { minimum: 6 }
+  # validates :password, presence: true, length: { minimum: 6 }
   validates :email, uniqueness: true
 
   after_create :create_cart

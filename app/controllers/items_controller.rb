@@ -22,7 +22,6 @@ class ItemsController < ApplicationController
     redirect_to cafe_path(@cafe)
   end
 
-  # TODO:
   def create_from_cart_page
     @user_id = current_user.id
     @cart = Cart.where(user_id: current_user.id, active: true).first

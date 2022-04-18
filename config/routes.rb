@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  get 'profile', to: 'users#profile'
+  patch 'profile', to: 'users#update_details', as: 'update_user'
+
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -18,8 +22,11 @@ Rails.application.routes.draw do
   # Increase number of items in cart from cart page
   post 'your-cart', to: 'items#create_from_cart_page', as: 'add_to_cart_from_cart_page'
 
+  # Checkout page
   get 'checkout_page', to: 'carts#checkout', as: 'checkout_page'
 
+  # Product Deletion
+  delete '/cafes/:id/products', to: 'products#destroy', as: 'product_destroy'
   resources :cafes do
     resources :products, only: %i[index show new create edit update destroy]
   end
