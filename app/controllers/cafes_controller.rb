@@ -7,7 +7,9 @@ class CafesController < ApplicationController
   def show
     @cafe = Cafe.find(params[:id])
     @products = Product.all
-    @cart = Cart.where(user_id: current_user.id, active: true).first
+    if user_signed_in?
+      @cart = Cart.where(user_id: current_user.id, active: true).first
+    end
   end
 
   def new

@@ -17,10 +17,12 @@
       <div class="card-product" style="width: 36rem;">
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
           <div class="card-product-infos">
-            <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
+            <h2><%= product.name %></h2>
             <p>$<%= product.price %></p>
             <p><%= product.description %></p>
+          <% if user_signed_in? %>
             <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn btn-primary", method: :post %>
+          <% end %>
           </div>
         </div><br>
       <% end %>
@@ -30,28 +32,35 @@
         <div class="card-header bg-transparent">Shopping cart</div>
         <div class="card-body">
         <h5 class="card-title">Items in cart</h5>
+          <% if user_signed_in? %>
+            <% unique = @cart.items.uniq { |p| p.product_id } %>
 
-          <% unique = @cart.items.uniq { |p| p.product_id } %>
+            <% unique.each do |item| %>
+              Item: <%= Product.find(item.product_id).name %><br>
+              Amount: <%= @cart.items.where(product_id: item.product_id).length %>
+              <%= link_to fa_icon("minus"), your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %>
+              <%= link_to fa_icon("plus"), add_to_cart_path(pid: item.product_id), method: :post  %>
+              <br><br>
+            <% end %>
 
-          <% unique.each do |item| %>
-            Item: <%= Product.find(item.product_id).name %><br>
-            Amount: <%= @cart.items.where(product_id: item.product_id).length %>
-            <%= link_to fa_icon("minus"), your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %>
-            <%= link_to fa_icon("plus"), add_to_cart_path(pid: item.product_id), method: :post  %>
-            <br><br>
+            <% total = 0 %>
+            <% @cart.items.each do |item| %>
+            <% total += Product.find(item.product_id).price %>
+            <% end %>
+            <p>Total Cost of Cart: $<%= total %></p>
+          <% else %>
+            <p>Log in to view your cart!</p>
           <% end %>
-
-          <% total = 0 %>
-          <% @cart.items.each do |item| %>
-          <% total += Product.find(item.product_id).price %>
-          <% end %>
-          <p>Total Cost of Cart: $<%= total %></p>
-
-      </div>
-      <div class="card-footer bg-transparent">
-        <%= link_to '<button type="button" class="btn btn-primary">Checkout</button>'.html_safe, checkout_page_path %>
-
-      </div>
+        </div>
+        <% if user_signed_in? %>
+        <div class="card-footer bg-transparent">
+          <%= link_to '<button type="button" class="btn btn-primary">Checkout</button>'.html_safe, checkout_page_path %>
+        </div>
+        <% else %>
+          <div class="card-footer bg-transparent">
+            <%= link_to '<button type="button" class="btn btn-primary">Login or Signup</button>'.html_safe, new_user_session_path %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>
