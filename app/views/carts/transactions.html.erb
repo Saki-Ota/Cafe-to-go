@@ -1,0 +1,14 @@
+<h1>Your Previous Transactions</h1>
+
+<% if @carts.empty? %>
+  No transactions yet!
+<% else %>
+  <% @carts.each do |cart| %>
+    Transaction:
+    <ul>
+      <%= cart.items.each do |item| %>
+        <li><%= Product.find(item.product_id).name %></li>
+      <% end %> <br><br><br>
+    </ul>
+  <% end %>
+<% end %>
