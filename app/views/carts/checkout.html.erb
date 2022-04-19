@@ -1,1 +1,17 @@
 <h1>Checkout Page</h1>
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Card Holder Name</label>
+      <input type="text" class="form-control" id="Card Holder Name" aria-describedby="emailHelp" placeholder="Card Holder Name">
+    </div>
+    <div class="form-group">
+      <label for="Card Number">Card Number</label>
+      <input type="number" class="form-control" id="Card Number" placeholder="Card Number">
+    </div>
+    <div class="form-group">
+      <label for="CVC">CVC</label>
+      <input type="password" class="form-control" id="CVC" placeholder="CVC">
+    </div>
+  </form>
+
+<%= link_to "Finish and Pay", checkout_cart_path, method: :post, data: {confirm: "Are you sure?"} %>

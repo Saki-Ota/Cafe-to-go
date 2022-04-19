@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   # Your cart show page
   get 'your-cart', to: 'carts#show'
 
+  # Previous Transactions
+  get 'transactions', to: 'carts#transactions', as: 'transactions'
+
   # to delete items in cart from your_cart page
   delete 'your-cart', to: 'items#destroy'
 
@@ -24,6 +27,9 @@ Rails.application.routes.draw do
 
   # Checkout page
   get 'checkout_page', to: 'carts#checkout', as: 'checkout_page'
+
+  # Checkout cart
+  post 'checkout_page', to: 'carts#checkout_cart', as: 'checkout_cart'
 
   # Product Deletion
   delete '/cafes/:id/products', to: 'products#destroy', as: 'product_destroy'
