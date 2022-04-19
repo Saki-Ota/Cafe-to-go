@@ -38,8 +38,8 @@
             <% unique.each do |item| %>
               Item: <%= Product.find(item.product_id).name %><br>
               Amount: <%= @cart.items.where(product_id: item.product_id).length %>
-              <%= link_to fa_icon("minus"), your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %>
-              <%= link_to fa_icon("plus"), add_to_cart_path(pid: item.product_id), method: :post  %>
+              <%= link_to fa_icon("minus"), your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"}, class: "fa-btn" %>
+              <%= link_to fa_icon("plus"), add_to_cart_path(pid: item.product_id), method: :post, class: "fa-btn"  %>
               <br><br>
             <% end %>
 
