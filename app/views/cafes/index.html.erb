@@ -1,23 +1,21 @@
 Want to add your Cafe? (For Business Owners): <%= link_to "Add Cafe", new_cafe_path %>
 <% def random_image() %>
-<% "https://source.unsplash.com/random/300x300?cafe?t=#{rand(15)}" %>
+<% "https://source.unsplash.com/random/300x300?cafe?t=#{rand(5)}" %>
 <% end %>
 
 <div class="container">
-
   <div class="center"><h1 class="text-center">Browse Cafes</h1></div>
-
-
-<div class="d-flex justify-content-between">
-  <% Cafe.all.each do |cafe| %>
-  <div class="card" style="width: 18rem;">
-    <img src="<%= random_image() %>" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">
-      <%= cafe.name %></h5>
-      <p class="card-text"><%= cafe.description %></p>
-      <a href="<%= cafe_path(cafe) %>" class="btn btn-primary">See this Cafe</a>
-    </div>
+  <br>
+  <div class="d-flex justify-content-between">
+    <% Cafe.all.each do |cafe| %>
+    <div class="card" style="width: 18rem;">
+      <img src="<%= random_image() %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">
+        <%= cafe.name %></h5>
+        <p class="card-text"><%= cafe.description %></p>
+        <a href="<%= cafe_path(cafe) %>" class="btn button_general">See this Cafe</a>
+      </div>
   </div>
   <% end %>
 </div>
