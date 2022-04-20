@@ -9,7 +9,7 @@
             <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
             <p>$<%= product.price %></p>
             <p><%= product.description %></p>
-            <a href="<%= cafe_product_path(product.cafe_id, product) %>" class="btn btn-primary">See details</a>
+            <a href="<%= cafe_product_path(product.cafe_id, product) %>" class="btn button_general">See details</a>
             <%= link_to "Delete Product", product_destroy_path(product.id), method: :delete, data: {confirm: "Are you sure?"}  %>
           </div>
         </div><br>
@@ -17,5 +17,3 @@
     </div>
   </div>
 </div>
-
-
