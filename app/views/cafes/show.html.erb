@@ -17,13 +17,22 @@
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
       <div class="card-product" style="width: 36rem;">
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
-          <div class="card-product-infos">
-            <h2><%= product.name %></h2>
-            <p>$<%= product.price %></p>
-            <p><%= product.description %></p>
-          <% if user_signed_in? %>
-            <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn button_general", method: :post %>
-          <% end %>
+          <div class="card-product-infos d-flex justify-content-between" style="width: 36rem;">
+            <div class="details">
+              <div>
+              <h2><%= product.name %></h2>
+              <p><%= product.description %></p>
+              </div>
+              <div>
+              <% if user_signed_in? %>
+                <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn button_general", method: :post %>
+              <% end %>
+              </div>
+            </div>
+
+            <div>
+              <p>$<%= product.price %></p>
+            </div>
           </div>
         </div><br>
       <% end %>
