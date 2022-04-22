@@ -1,0 +1,30 @@
+.button_home {
+  border-radius: 10px;
+  color: black;
+  font-size: 40px;
+  font-weight: 100;
+  padding: 10px 40px;
+  // background-color: #A67B5B;
+  background-color: #D9CCBC;
+  // box-shadow: 1px 1px 20px 0 #000000;
+  // text-shadow: 1px 1px 20px #000000;
+  // border: solid #FFFFFF 1px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button_home:hover {
+  background: #A88A67;
+  border: solid #A67B5B 1px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.button_general {
+  background: #D9CCBC;
+}

@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6 justify-centre">
+    <br>
       <h1 class="text-center"><%= @cafe.name %> </h1>
       <p class="text-center"><%= @cafe.address %> <br>
       <%= @cafe.description %></p>
@@ -16,13 +17,22 @@
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
       <div class="card-product" style="width: 100%">
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
-          <div class="card-product-infos">
-            <h2><%= product.name %></h2>
-            <p>$<%= product.price %></p>
-            <p><%= product.description %></p>
-          <% if user_signed_in? %>
-            <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn btn-primary", method: :post %>
-          <% end %>
+          <div class="card-product-infos d-flex justify-content-between" style="width: 36rem;">
+            <div class="details">
+              <div>
+              <h2><%= product.name %></h2>
+              <p><%= product.description %></p>
+              </div>
+              <div>
+              <% if user_signed_in? %>
+                <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn button_general", method: :post %>
+              <% end %>
+              </div>
+            </div>
+
+            <div>
+              <p>$<%= product.price %></p>
+            </div>
           </div>
         </div><br>
       <% end %>
@@ -38,8 +48,10 @@
             <% unique.each do |item| %>
               Item: <%= Product.find(item.product_id).name %><br>
               Amount: <%= @cart.items.where(product_id: item.product_id).length %>
-              <%= link_to fa_icon("minus"), your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"}, class: "fa-btn" %>
-              <%= link_to fa_icon("plus"), add_to_cart_path(pid: item.product_id), method: :post, class: "fa-btn"  %>
+              &nbsp
+              <%= link_to fa_icon("minus"), your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %>
+              &nbsp
+              <%= link_to fa_icon("plus"), add_to_cart_path(pid: item.product_id), method: :post  %>
               <br><br>
             <% end %>
 
@@ -54,11 +66,11 @@
         </div>
         <% if user_signed_in? %>
         <div class="card-footer bg-transparent">
-          <%= link_to '<button type="button" class="btn btn-primary">Checkout</button>'.html_safe, checkout_page_path %>
+          <%= link_to '<button type="button" class="btn button_general">Checkout</button>'.html_safe, checkout_page_path %>
         </div>
         <% else %>
           <div class="card-footer bg-transparent">
-            <%= link_to '<button type="button" class="btn btn-primary">Login or Signup</button>'.html_safe, new_user_session_path %>
+            <%= link_to '<button type="button" class="btn button_general">Login or Signup</button>'.html_safe, new_user_session_path %>
           </div>
         <% end %>
       </div>
