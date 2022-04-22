@@ -1,0 +1,22 @@
+.btn {
+  color: $cream;
+  background-color: $cafe-au-lait;
+  border-color: $dark-byzamtium;
+
+}
+.btn:hover {
+  background-color: $dark-byzamtium;
+  border-color: $dark-byzamtium;
+}
+
+
+.fa-btn {
+  color: $cream;
+  background-color: $cafe-au-lait;
+  border-color: $dark-byzamtium;
+  padding: 0px 4px;
+}
+.fa-btn:hover{
+    background-color: $dark-byzamtium;
+    color: $cream;
+  }
