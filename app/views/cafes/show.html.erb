@@ -14,7 +14,7 @@
     <div class="col-sm-9 justify-content-between">
       <h3>Menu items</h3>
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
-      <div class="card-product" style="width: 36rem;">
+      <div class="card-product" style="width: 100%">
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
           <div class="card-product-infos">
             <h2><%= product.name %></h2>
@@ -61,6 +61,14 @@
             <%= link_to '<button type="button" class="btn btn-primary">Login or Signup</button>'.html_safe, new_user_session_path %>
           </div>
         <% end %>
+      </div>
+      <% if @cafe.geocoded? %>
+        <div style="width: 100%; height: 600px;"
+          data-controller="mapbox"
+          data-mapbox-markers-value="<%= @markers.to_json %>"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      <%end %>
     </div>
   </div>
 </div>

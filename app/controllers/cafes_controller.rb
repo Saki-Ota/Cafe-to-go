@@ -2,6 +2,13 @@ class CafesController < ApplicationController
 
   def index
     @cafes = Cafe.all
+    @markers = @cafes.geocoded.map do |cafe|
+      {
+        lat: cafe.latitude,
+        lng: cafe.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { cafe: cafe })
+      }
+    end
   end
 
   def show
@@ -9,6 +16,13 @@ class CafesController < ApplicationController
     @products = Product.all
     if user_signed_in?
       @cart = Cart.where(user_id: current_user.id, active: true).first
+    end
+    if @cafe.geocoded?
+      @markers = [{
+        lat: @cafe.latitude,
+        lng: @cafe.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { cafe: @cafe })
+      }]
     end
   end
 
