@@ -1,7 +1,3 @@
-<% def random_image() %>
-<% "https://source.unsplash.com/random/300x300?cafe?t=#{rand(5)}" %>
-<% end %>
-
 <div class="container">
 <br>
   <div class="center"><h1 class="text-center">Browse Cafes</h1></div>
@@ -9,7 +5,7 @@
   <div class="d-flex justify-content-between">
     <% Cafe.all.each do |cafe| %>
     <div class="card" style="width: 18rem;">
-      <img src="<%= random_image() %>" class="card-img-top" alt="...">
+      <img src="<%= "https://source.unsplash.com/random/300x300/?cafe?#{cafe.id*5}" %>" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">
         <%= cafe.name %></h5>
