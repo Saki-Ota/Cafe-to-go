@@ -17,8 +17,6 @@ class CafesController < ApplicationController
     if user_signed_in?
       @cart = Cart.where(user_id: current_user.id, active: true).first
     end
-<<<<<<< HEAD
-=======
     if @cafe.geocoded?
       @markers = [{
         lat: @cafe.latitude,
@@ -26,7 +24,6 @@ class CafesController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { cafe: @cafe })
       }]
     end
->>>>>>> 1a74b9de35a33ab16699fa3125635d50a64cb391
   end
 
   def new
