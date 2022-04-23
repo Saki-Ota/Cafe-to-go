@@ -19,15 +19,19 @@
   </div>
   <% end %>
 </div>
+<div style="padding-top: 50px;">
+  <h3>Explore cafe locations</h3>
+</div>
+
 <div style="width: 100%; height: 600px;"
         data-controller="mapbox"
         data-mapbox-markers-value="<%= @markers.to_json %>"
         data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 <div class="container d-flex flex-column ">
 
-    <footer class="mt-auto">
+    <footer class="mt-auto" style="padding-top: 100px;">
       <p>Want to add your Cafe? (For Business Owners):
-      <a href="<%= new_cafe_path %>" class="btn">Add Cafe</a>
+      <a href="<%= new_cafe_path %>" class="btn button_general">Add Cafe</a>
     </footer>
 
 </div>

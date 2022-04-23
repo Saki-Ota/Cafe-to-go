@@ -86,11 +86,11 @@
     <div class="col-sm-1"></div>
   </div>
 </div>
-<div class="container d-flex flex-column min-vh-100">
+<div class="container d-flex flex-column min-vh-50">
 <footer class="mt-auto">
     <p>For Business owner:</p>
-    <%= link_to "Product creation", new_cafe_product_path(@cafe) %>
-    <%= link_to "Edit Products", cafe_products_path(@cafe) %>
-    <%= link_to "Edit Cafe", edit_cafe_path(@cafe) %>
+    <p><%= link_to "Create Product", new_cafe_product_path(@cafe) %>  |
+    <%= link_to "Edit Products", cafe_products_path(@cafe) %>  | 
+    <%= link_to "Edit Cafe", edit_cafe_path(@cafe) %></p>
   </div>
 </footer>
