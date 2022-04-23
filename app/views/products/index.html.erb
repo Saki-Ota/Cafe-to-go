@@ -6,11 +6,11 @@
         <div class="card-product">
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
           <div class="card-product-infos">
-            <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
+            <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product), :class => "btn button" %></h2>
             <p>$<%= product.price %></p>
             <p><%= product.description %></p>
             <a href="<%= cafe_product_path(product.cafe_id, product) %>" class="btn button_general">See details</a>
-            <%= link_to "Delete Product", product_destroy_path(product.id), method: :delete, data: {confirm: "Are you sure?"}  %>
+            <%= link_to "Delete Product", product_destroy_path(product.id), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn button"  %>
           </div>
         </div><br>
       <% end %>

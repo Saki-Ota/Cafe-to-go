@@ -13,10 +13,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-1"></div>
-    <div class="col-sm-7 justify-content-between">
+    <div class="col-sm-5 justify-content-between">
       <h3>Menu items</h3>
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
-      <div class="card-product" style="width: 36em">
+      <div class="card-product" style="width: 100%">
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
           <div class="card-product-infos d-flex justify-content-between" style="width: 36rem;">
             <div class="details">
@@ -38,6 +38,7 @@
         </div><br>
       <% end %>
     </div>
+
     <div class="col-sm-3 justify-content-between">
       <div class="card mb-3" style="max-width: 18rem;">
         <div class="card-header bg-transparent">Shopping cart</div>
@@ -75,22 +76,27 @@
           </div>
         <% end %>
       </div>
-      <% if @cafe.geocoded? %>
+    </div>
+      <div class="col-sm-3 justify-content-between">
+        <% if @cafe.geocoded? %>
         <div style="width: 100%; height: 600px;"
           data-controller="mapbox"
           data-mapbox-markers-value="<%= @markers.to_json %>"
           data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
-      <%end %>
-    </div>
+        <%end %>
+      </div>
     <div class="col-sm-1"></div>
   </div>
 </div>
-<div class="container d-flex flex-column min-vh-100">
+<div class="container d-flex flex-column">
 <footer class="mt-auto">
-    <p>For Business owner:</p>
-    <%= link_to "Product creation", new_cafe_product_path(@cafe) %>
-    <%= link_to "Edit Products", cafe_products_path(@cafe) %>
-    <%= link_to "Edit Cafe", edit_cafe_path(@cafe) %>
+    <ul class="list-unstyled">For Business owner:
+      <div class="d-flex">
+        <li><%= link_to "Product creation", new_cafe_product_path(@cafe), :class => "btn button_general" %></li>
+        <li><%= link_to "Edit Products", cafe_products_path(@cafe), :class => "btn button_general" %></li>
+        <li><%= link_to "Edit Cafe", edit_cafe_path(@cafe), :class => "btn button_general" %></li>
+      </div>
+    </ul>
   </div>
 </footer>
