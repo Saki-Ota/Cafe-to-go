@@ -20,11 +20,16 @@
   border: solid #A67B5B 1px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   text-decoration: none;
   color: #FFFFFF;
 }
 
 .button_general {
   background: #D9CCBC;
+}
+
+.button_general:hover {
+  background-color: $dark-byzamtium;
+  border-color: $dark-byzamtium;
 }

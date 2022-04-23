@@ -12,15 +12,10 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-7 justify-content-between">
+    <div class="col-sm-6 justify-content-between">
       <h3>Menu items</h3>
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
-<<<<<<< HEAD
-      <div class="card-product" style="width: 36rem;">
-=======
-      <div class="card-product" style="width: 36em">
->>>>>>> 1a74b9de35a33ab16699fa3125635d50a64cb391
+      <div class="card-product" style="width: 100%">
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
           <div class="card-product-infos d-flex justify-content-between" style="width: 36rem;">
             <div class="details">
@@ -42,6 +37,7 @@
         </div><br>
       <% end %>
     </div>
+
     <div class="col-sm-3 justify-content-between">
       <div class="card mb-3" style="max-width: 18rem;">
         <div class="card-header bg-transparent">Shopping cart</div>
@@ -78,18 +74,17 @@
             <%= link_to '<button type="button" class="btn button_general">Login or Signup</button>'.html_safe, new_user_session_path %>
           </div>
         <% end %>
-<<<<<<< HEAD
-=======
       </div>
-      <% if @cafe.geocoded? %>
+    </div>
+      <div class="col-sm-3 justify-content-between">
+        <% if @cafe.geocoded? %>
         <div style="width: 100%; height: 600px;"
           data-controller="mapbox"
           data-mapbox-markers-value="<%= @markers.to_json %>"
           data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
-      <%end %>
->>>>>>> 1a74b9de35a33ab16699fa3125635d50a64cb391
-    </div>
+        <%end %>
+      </div>
     <div class="col-sm-1"></div>
   </div>
 </div>
@@ -97,7 +92,10 @@
 <footer class="mt-auto">
     <p>For Business owner:</p>
     <p><%= link_to "Create Product", new_cafe_product_path(@cafe) %>  |
-    <%= link_to "Edit Products", cafe_products_path(@cafe) %>  | 
+    <%= link_to "Edit Products", cafe_products_path(@cafe) %>  |
     <%= link_to "Edit Cafe", edit_cafe_path(@cafe) %></p>
+    <p><%= link_to "Create Product", new_cafe_product_path(@cafe), :class => "btn button_general"  %>  |
+    <%= link_to "Edit Products", cafe_products_path(@cafe), :class => "btn button_general" %>  |
+    <%= link_to "Edit Cafe", edit_cafe_path(@cafe),:class => "btn button_general" %></p>
   </div>
 </footer>

@@ -3,12 +3,16 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6 justify-centre">
       <h1>Edit <%= @product.name %></h1>
-      <%= simple_form_for [ @cafe, @product ], url: cafe_product_path do |f| %>
-          <%= f.input :name %> <br>
-          <%= f.input :price %>
-          <%= f.input :description %>
+      <div class="card" style="width: 100%;">
+        <%= simple_form_for [ @cafe, @product ], url: cafe_product_path do |f| %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= f.input :name %></li>
+          <li class="list-group-item"><%= f.input :price %></li>
+          <li class="list-group-item"><%= f.input :description %></li>
           <%= f.submit "Update Details", :class => "btn button_general"%>
-        <% end %>
+        </ul>
+          <% end %>
+      </div>
     </div>
     <div class="col-sm-3"></div>
   </div>

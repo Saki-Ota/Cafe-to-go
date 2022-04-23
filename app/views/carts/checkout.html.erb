@@ -1,9 +1,50 @@
+<script type="text/javascript">
+function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("dinein");
+  // Get the output text
+  var text = document.getElementById("dining");
+  var table = document.getElementById("table");
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true) {
+    text.style.display = "none";
+    table.style.display ="block";
+  } else {
+    text.style.display = "block";
+    table.style.display ="none";
+  }
+}
+</script>
 <br>
 <div class="container">
   <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6 justify-centre">
-      <h1>Checkout Page</h1>
+      <h1>Checkout</h1>
+      <h3>Details</h3>
+      <form>
+        <div class="form-group">
+          <label>Dining in?</label>&nbsp&nbsp
+          <input type="checkbox" id="dinein" onclick="myFunction()">
+          <br>
+          <div id="table" style="display:none">
+          <label>
+          What is your table number?
+          </label>
+          <input type="number" step="1" placeholder="1" min="1" max="12">
+          </div><br>
+          <div id = "dining">
+            <label>When will you arrive?</label>&nbsp&nbsp&nbsp
+            <input type="number" step="5" placeholder="0" min="0" max="45"> minutes &nbsp&nbsp&nbsp
+          </div>
+          <div><br>
+          <label>Special Instructions</label>
+          <input type="text" placeholder="e.g Two Sugars in the latte" size="95">
+          </div>
+        </div>
+      </form>
+      <br>
+      <h3>Payment information</h3>
       <form>
         <div class="form-group">
           <label for="exampleInputEmail1">Card Holder Name</label>
