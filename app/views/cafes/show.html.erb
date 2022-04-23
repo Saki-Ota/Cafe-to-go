@@ -12,10 +12,15 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-sm-9 justify-content-between">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-7 justify-content-between">
       <h3>Menu items</h3>
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
+<<<<<<< HEAD
       <div class="card-product" style="width: 36rem;">
+=======
+      <div class="card-product" style="width: 36em">
+>>>>>>> 1a74b9de35a33ab16699fa3125635d50a64cb391
           <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
           <div class="card-product-infos d-flex justify-content-between" style="width: 36rem;">
             <div class="details">
@@ -73,14 +78,26 @@
             <%= link_to '<button type="button" class="btn button_general">Login or Signup</button>'.html_safe, new_user_session_path %>
           </div>
         <% end %>
+<<<<<<< HEAD
+=======
+      </div>
+      <% if @cafe.geocoded? %>
+        <div style="width: 100%; height: 600px;"
+          data-controller="mapbox"
+          data-mapbox-markers-value="<%= @markers.to_json %>"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      <%end %>
+>>>>>>> 1a74b9de35a33ab16699fa3125635d50a64cb391
     </div>
+    <div class="col-sm-1"></div>
   </div>
 </div>
-<div class="container d-flex flex-column min-vh-100">
+<div class="container d-flex flex-column min-vh-50">
 <footer class="mt-auto">
     <p>For Business owner:</p>
-    <%= link_to "Product creation", new_cafe_product_path(@cafe) %>
-    <%= link_to "Edit Products", cafe_products_path(@cafe) %>
-    <%= link_to "Edit Cafe", edit_cafe_path(@cafe) %>
+    <p><%= link_to "Create Product", new_cafe_product_path(@cafe) %>  |
+    <%= link_to "Edit Products", cafe_products_path(@cafe) %>  | 
+    <%= link_to "Edit Cafe", edit_cafe_path(@cafe) %></p>
   </div>
 </footer>
