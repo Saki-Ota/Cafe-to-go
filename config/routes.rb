@@ -36,4 +36,7 @@ Rails.application.routes.draw do
   resources :cafes do
     resources :products, only: %i[index show new create edit update destroy]
   end
+
+  # Delete a Cafe
+  delete '/cafes/:id/edit', to: 'cafes#destroy', as: 'cafe_destroy'
 end

@@ -13,6 +13,8 @@
           geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %></li>
             <li class="list-group-item"><%= f.input :description %></li>
             <%= f.submit "Update Details", :class => "btn button_general"%>
+          &nbsp&nbsp
+          <%= link_to "Delete Cafe", cafe_destroy_path(@cafe.id), method: :delete, data: {confirm: "Are you sure?"}, :class => "btn button"  %>
           </ul>
           <% end %>
        </div>
