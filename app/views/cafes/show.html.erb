@@ -12,8 +12,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-5 justify-content-between">
+    <div class="col-sm-6 justify-content-between">
       <h3>Menu items</h3>
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
       <div class="card-product" style="width: 100%">
@@ -93,7 +92,7 @@
 <footer class="mt-auto">
     <p>For Business owner:</p>
     <p><%= link_to "Create Product", new_cafe_product_path(@cafe), :class => "btn button_general"  %>  |
-    <%= link_to "Edit Products", cafe_products_path(@cafe)"btn button_general" %>  | 
-    <%= link_to "Edit Cafe", edit_cafe_path(@cafe)"btn button_general" %></p>
+    <%= link_to "Edit Products", cafe_products_path(@cafe), :class => "btn button_general" %>  |
+    <%= link_to "Edit Cafe", edit_cafe_path(@cafe),:class => "btn button_general" %></p>
   </div>
 </footer>
