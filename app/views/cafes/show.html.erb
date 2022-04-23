@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6 justify-centre">
+    <br>
       <h1 class="text-center"><%= @cafe.name %> </h1>
       <p class="text-center"><%= @cafe.address %> <br>
       <%= @cafe.description %></p>
@@ -14,21 +15,64 @@
     <div class="col-sm-9 justify-content-between">
       <h3>Menu items</h3>
       <% Product.where(cafe_id: @cafe.id).each do |product| %>
-      <p><%= product.name %>  #event listener that makes a new item and adds to cart.<br>
-      <%= product.price %> </p>
-      <button type="submit" class="btn btn-primary">Add to cart</button>
+      <div class="card-product" style="width: 36rem;">
+          <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
+          <div class="card-product-infos d-flex justify-content-between" style="width: 36rem;">
+            <div class="details">
+              <div>
+              <h2><%= product.name %></h2>
+              <p><%= product.description %></p>
+              </div>
+              <div>
+              <% if user_signed_in? %>
+                <%= link_to "Add to cart", add_to_cart_path(pid: product.id), class: "btn button_general", method: :post %>
+              <% end %>
+              </div>
+            </div>
+
+            <div>
+              <p>$<%= product.price %></p>
+            </div>
+          </div>
+        </div><br>
       <% end %>
     </div>
     <div class="col-sm-3 justify-content-between">
       <div class="card mb-3" style="max-width: 18rem;">
         <div class="card-header bg-transparent">Shopping cart</div>
         <div class="card-body">
-        <h5 class="card-title">Item in cart</h5>
-        <p class="card-text">Delicious item with jam and honey</p>
-      </div>
-      <div class="card-footer bg-transparent">
-        <button type="submit" class="btn btn-primary">Checkout</button>
-      </div>
+        <h5 class="card-title">Items in cart</h5>
+          <% if user_signed_in? %>
+            <% unique = @cart.items.uniq { |p| p.product_id } %>
+
+            <% unique.each do |item| %>
+              Item: <%= Product.find(item.product_id).name %><br>
+              Amount: <%= @cart.items.where(product_id: item.product_id).length %>
+              &nbsp
+              <%= link_to fa_icon("minus"), your_cart_in_cafe_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %>
+              &nbsp
+              <%= link_to fa_icon("plus"), add_to_cart_path(pid: item.product_id), method: :post  %>
+              <br><br>
+            <% end %>
+
+            <% total = 0 %>
+            <% @cart.items.each do |item| %>
+            <% total += Product.find(item.product_id).price %>
+            <% end %>
+            <p>Total Cost of Cart: $<%= total %></p>
+          <% else %>
+            <p>Log in to view your cart!</p>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+        <div class="card-footer bg-transparent">
+          <%= link_to '<button type="button" class="btn button_general">Checkout</button>'.html_safe, checkout_page_path %>
+        </div>
+        <% else %>
+          <div class="card-footer bg-transparent">
+            <%= link_to '<button type="button" class="btn button_general">Login or Signup</button>'.html_safe, new_user_session_path %>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

@@ -1,18 +1,19 @@
-
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-6">
+    <br style="padding-top: 50px">
       <% @products.each do |product| %>
-
-      <div class = "d-flex justify-content-between">
-        <%= link_to product.name,  cafe_product_path(product.cafe_id, product) %>
-        <p>$ <%= product.price %></p>
-        </div>
-        <%= product.description %><br>
-        <%= link_to "add to cart", carts_path %><br>
-        <br>
-        <% end %>
+        <div class="card-product">
+          <img src="https://source.unsplash.com/random/300x300?<%= product.name%>" />
+          <div class="card-product-infos">
+            <h2><%= link_to product.name,  cafe_product_path(product.cafe_id, product) %></h2>
+            <p>$<%= product.price %></p>
+            <p><%= product.description %></p>
+            <a href="<%= cafe_product_path(product.cafe_id, product) %>" class="btn button_general">See details</a>
+            <%= link_to "Delete Product", product_destroy_path(product.id), method: :delete, data: {confirm: "Are you sure?"}  %>
+          </div>
+        </div><br>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,0 +1,23 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 justify-centre">
+      <h1>Your Previous Transactions</h1>
+
+      <% if @carts.empty? %>
+        No transactions yet!
+      <% else %>
+        <% @carts.each_with_index do |cart, index| %>
+          Transaction <%= index + 1 %>:
+          <ul>
+            <% cart.items.each do |item| %>
+            <li><%= Product.find(item.product_id).name %></li>
+            <% end %> <br><br>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>

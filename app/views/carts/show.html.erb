@@ -1,0 +1,34 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 justify-centre" style="text-align:center;">
+        <h1>Your Cart</h1>
+        <br><br>
+        <% unique = @cart.items.uniq { |p| p.product_id } %>
+
+        <% unique.each do |item| %>
+          Item: <%= Product.find(item.product_id).name %><br>
+          Amount: <%= @cart.items.where(product_id: item.product_id).length %>
+          &nbsp
+          <%= link_to fa_icon("minus"), your_cart_path(item_id: @cart.items.where(product_id: item.product_id).first), method: :delete, data: {confirm: "Are you sure?"} %>
+          &nbsp
+          <%= link_to fa_icon("plus"), add_to_cart_from_cart_page_path(pid: item.product_id), method: :post  %>
+          <br><br>
+        <% end %>
+
+        <% total = 0 %>
+        <% @cart.items.each do |item| %>
+        <% total += Product.find(item.product_id).price %>
+        <% end %>
+        <p>Total Cost of Cart: $<%= total %></p>
+
+        <br><br>
+        <%= link_to '<button type="button" class="btn button_general">Checkout</button>'.html_safe, checkout_page_path %>
+        <% if @cart.items.length > 0 %><br><br>
+        <%= link_to "Back to the Cafe", cafe_path(Cafe.find((Product.find(@cart.items.first.product_id)).cafe_id)) %>
+        <% end %>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</div>
