@@ -89,14 +89,11 @@
     <div class="col-sm-1"></div>
   </div>
 </div>
-<div class="container d-flex flex-column">
+<div class="container d-flex flex-column min-vh-50">
 <footer class="mt-auto">
-    <ul class="list-unstyled">For Business owner:
-      <div class="d-flex">
-        <li><%= link_to "Product creation", new_cafe_product_path(@cafe), :class => "btn button_general" %></li>
-        <li><%= link_to "Edit Products", cafe_products_path(@cafe), :class => "btn button_general" %></li>
-        <li><%= link_to "Edit Cafe", edit_cafe_path(@cafe), :class => "btn button_general" %></li>
-      </div>
-    </ul>
+    <p>For Business owner:</p>
+    <p><%= link_to "Create Product", new_cafe_product_path(@cafe), :class => "btn button_general"  %>  |
+    <%= link_to "Edit Products", cafe_products_path(@cafe)"btn button_general" %>  | 
+    <%= link_to "Edit Cafe", edit_cafe_path(@cafe)"btn button_general" %></p>
   </div>
 </footer>
